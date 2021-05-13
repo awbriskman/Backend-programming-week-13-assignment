@@ -21,6 +21,8 @@ import lombok.Getter;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -40,12 +42,12 @@ public class FetchJeepTest {
     private TestRestTemplate restTemplate;
 
     protected String getBaseUri(){
-        return String.format("htttp://localhost:%d/jeeps", servicePort);
+        return String.format("http://localhost:%d/jeeps", servicePort);
     }
 
 
     @Test
-    void JtestThatJeepsAreReturnedWhenAValidModelAndTrimAreSupplied (){
+    void testThatJeepsAreReturnedWhenAValidModelAndTrimAreSupplied (){
         //given: model, trim, uri
         JeepModel model = JeepModel.WRANGLER;
         String trim = "Sport";
@@ -54,7 +56,31 @@ public class FetchJeepTest {
         //ResponseEntity<Jeep> response = getRestTemplate().getForEntity(uri, Jeep.class);
         ResponseEntity<List<Jeep>> response = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<>() {});
         //then: success (200) status code is returned
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK); 
+        List<Jeep> expected = BuildExpected();
+        System.out.println(expected);
+        assertThat(response.getBody()).isEqualTo(expected);
     }
+    
+    List<Jeep> BuildExpected(){
+        List<Jeep> list = new ArrayList<>();
+
+        list.add(Jeep.builder()
+            .modelId(JeepModel.WRANGLER)
+            .trimLevel("Sport")    
+            .numDoors(2)
+            .wheelSize(17)
+            .basePrice(new BigDecimal("28475.00"))
+            .build());
+
+        list.add(Jeep.builder()
+            .modelId(JeepModel.WRANGLER)
+            .trimLevel("Sport")    
+            .numDoors(4)
+            .wheelSize(17)
+            .basePrice(new BigDecimal("31975.00"))
+            .build());
+        return list;
+    }
+    
 }
