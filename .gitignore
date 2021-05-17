@@ -31,3 +31,17 @@ build/
 
 ### VS Code ###
 .vscode/
+Spring-Boot-Course-Student-Resources-main.zip
+Spring-Boot-Course-Student-Resources-main/README.docx
+Spring-Boot-Course-Student-Resources-main/Entities/Color.java
+Spring-Boot-Course-Student-Resources-main/Entities/Customer.java
+Spring-Boot-Course-Student-Resources-main/Entities/Engine.java
+Spring-Boot-Course-Student-Resources-main/Entities/FuelType.java
+Spring-Boot-Course-Student-Resources-main/Entities/Option.java
+Spring-Boot-Course-Student-Resources-main/Entities/OptionType.java
+Spring-Boot-Course-Student-Resources-main/Entities/Order.java
+Spring-Boot-Course-Student-Resources-main/Entities/OrderRequest.java
+Spring-Boot-Course-Student-Resources-main/Entities/Tire.java
+Spring-Boot-Course-Student-Resources-main/Source/DefaultJeepOrderDao.source
+Spring-Boot-Course-Student-Resources-main/Source/DefaultJeepOrderService.source
+Spring-Boot-Course-Student-Resources-main/Source/JeepOrderDao.source

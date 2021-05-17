@@ -1,7 +1,9 @@
 package com.prominiotech.jeep.service;
 
+import java.util.Collections;
 import java.util.List;
 
+import com.prominiotech.jeep.dao.JeepSalesDao;
 import com.prominiotech.jeep.entity.Jeep;
 import com.prominiotech.jeep.entity.JeepModel;
 
@@ -15,13 +17,15 @@ import lombok.extern.slf4j.Slf4j;
 public class DefaultJeepSalesService implements JeepSalesService{
     
     @Autowired
-    private JeepSalesService jeepSalesService;
+    private JeepSalesDao jeepSalesDao;
 
     @Override
     public List<Jeep> fetchJeeps(JeepModel model, String trim) {
         // TODO Auto-generated method stub
         log.info("JeepModel={}, trim = {}", model, trim);
-        return null;
+        List<Jeep> jeeps = jeepSalesDao.fetchJeeps(model, trim);
+        Collections.sort(jeeps);
+        return jeeps;
     }
 
 }

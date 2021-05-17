@@ -3,6 +3,7 @@ package com.prominiotech.jeep.controller;
 import com.prominiotech.jeep.entity.Jeep;
 import com.prominiotech.jeep.entity.JeepModel;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,6 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -45,7 +47,12 @@ public class FetchJeepTest {
         return String.format("http://localhost:%d/jeeps", servicePort);
     }
 
+    @Test
+    void dbtest(){
 
+    }
+
+    @Disabled
     @Test
     void testThatJeepsAreReturnedWhenAValidModelAndTrimAreSupplied (){
         //given: model, trim, uri
@@ -57,9 +64,13 @@ public class FetchJeepTest {
         ResponseEntity<List<Jeep>> response = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<>() {});
         //then: success (200) status code is returned
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK); 
+        List<Jeep> actual = response.getBody();
         List<Jeep> expected = BuildExpected();
+
+        Collections.sort(expected);
+
         System.out.println(expected);
-        assertThat(response.getBody()).isEqualTo(expected);
+        assertThat(actual).isEqualTo(expected);
     }
     
     List<Jeep> BuildExpected(){

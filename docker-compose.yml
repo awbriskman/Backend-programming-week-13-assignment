@@ -13,10 +13,10 @@ services:
       # These environment variables cause MySQL to create the users username/password
       # root/root and dev/dev. It also creates a database named jeep.
       MYSQL_ROOT_USER: root
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: password1
       MYSQL_DATABASE: jeep
-      MYSQL_USER: jeep
-      MYSQL_PASSWORD: jeep
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password1
     ports:
       # Forward host port 8306 to guest port 3306 (MySQL default port). This means that applications external to the
       # container cluster can access MySQL within the container on port 8306 and the requests are forwarded to port 3306
